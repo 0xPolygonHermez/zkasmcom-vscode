@@ -1,0 +1,25 @@
+{
+    "name": "zkasmcom-vscode",
+    "displayName": "zkasm-vscode",
+    "description": "zkASM Language Support",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.66.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "zkasm",
+            "aliases": ["zkasm", "zkasm"],
+            "extensions": [".zkasm"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "zkasm",
+            "scopeName": "source.zkasm",
+            "path": "./syntaxes/zkasm.tmLanguage.json"
+        }]
+    }
+}

@@ -1,0 +1,198 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "zkasm",
+	"patterns": [
+        {
+			"include": "#untrust"
+		},
+		{
+			"include": "#instruction"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#operators"
+		},
+		{
+			"include": "#numbers"
+		},
+        {
+			"include": "#comments"
+		},
+		{
+			"include": "#include"
+		},
+		{
+			"include": "#identifiers"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.definition.zkasm",
+				"match": "\\b(VAR|GLOBAL|CONST|CONSTL)\\b"
+			},
+			{
+				"name": "keyword.memory.zkasm",
+				"match": "\\b(MLOAD|MSTORE|MEM_ALIGN_RD|MEM_ALIGN_WR|MEM_ALIGN_WR8)\\b"
+			},
+			{
+				"name": "keyword.assert.zkasm",
+				"match": "\\b(ASSERT)\\b"
+			},
+			{
+				"name": "keyword.hash.zkasm",
+				"match": "\\b(HASHK|HASHKLEN|HASHKDIGEST|HASHP|HASHPLEN|HASHPDIGEST)\\b"
+			},
+			{
+				"name": "keyword.store.zkasm",
+				"match": "\\b(SLOAD|STORE)\\b"
+			},
+			{
+				"name": "keyword.arith.zkasm",
+				"match": "\\b(ARITH|ARITH_ECADD_DIFFERENT|ARITH_ECADD_SAME)\\b"
+			},
+			{
+				"name": "keyword.logical.zkasm",
+				"match": "\\b(LT|SLT|EQ)\\b"
+			},
+			{
+				"name": "keyword.binaries.zkasm",
+				"match": "\\b(AND|OR|XOR|SHL|SHR)\\b"
+			},
+			{
+				"name": "keyword.basic.zkasm",
+				"match": "\\b(ADD|SUB)\\b"
+			},
+			{
+				"name": "keyword.pages.zkasm",
+				"match": "\\b(INST_MAP_ROM|SYS|MEM|CODE|STACK)\\b"
+			},
+			{
+				"name": "keyword.control.zkasm",
+				"match": "\\b(JMP|JMPN|JMPC|CALL|RETURN)\\b"
+			},
+			{
+				"name": "keyword.registers.zkasm",
+				"match": "\\b(A|B|C|D|E|SR|CTX|SP|PC|GAS|zkPC|RR|STEP|MAXMEM|HASPOS)\\b"
+			},
+			{
+				"name": "keyword.block.zkasm",
+				"match": "\\b(namespace)\\b"
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.zkasm",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.zkasm",
+					"match": "\\\\."
+				}
+			]
+		},
+        "instruction": {
+			"patterns":[
+			]
+        },
+        "comments": {
+			"patterns": [
+				{
+					"name": "comment.line.zkasm",
+					"begin": ";",
+					"end": "\\n"
+				}
+			]
+        },
+        "untrust": {
+			"patterns": [
+				{
+					"name": "macro.zkasm",
+					"begin": "\\${",
+					"end": "}"
+				},
+				{
+					"name": "macro.zkasm",
+					"begin": "\\$\\${",
+					"end": "}"
+				}
+			]
+        },
+		"numbers": {
+            "patterns": [
+                {
+                    "match": "(\\-?[0-9]+)\\b",
+                    "name": "constant.numeric.decimal.zkasm"
+                },
+                {
+                    "match": "(\\-?0x[0-9a-fA-F]+)\\b",
+                    "name": "constant.numeric.hexadecimal.zkasm"
+                },
+                {
+                    "match": "(\\-?[0-9]+)n\\b",
+                    "name": "constant.numeric.long.decimal.zkasm"
+                },
+                {
+                    "match": "(\\-?0x[0-9a-fA-F]+)n\\b",
+                    "name": "constant.numeric.long.hexadecimal.zkasm"
+                }
+            ]
+		},
+		"operators": {
+			"patterns": [
+				{
+					"match": "=",
+					"name": "keyword.operator.assignment.zkasm"
+				},
+                {
+					"match": "=>",
+					"name": "keyword.operator.assignment.zkasm"
+				},
+				{
+					"match": "\\*|-|\\+",
+					"name": "keyword.operator.zkasm"
+				},
+				{
+					"match": "\\*\\*|%|<<|>>|\\^|\\|\\||\\||\\+|&&|&|==|=|\\!=|<=|>=|<|>|=|\\!|\\?\\?|\\?",
+					"name": "keyword.operator.const.zkasm"
+				}
+			]
+		},
+        "include": {
+            "patterns": [{
+                "name": "meta.preprocessor.include.zkasm",
+                "match": "\\b(INCLUDE)\\b\\s*\"[^\"]+\""
+            }]
+        },
+		"identifiers": {
+			"patterns": [{
+                "name": "variable.constant.zkasm",
+                "match": "(\\%[a-zA-Z_][a-zA-Z$_0-9]*)\\b"
+            },
+            {
+				"name": "variable.zkasm",
+				"match": "\\b([a-zA-Z_][a-zA-Z$_0-9]*)\\b"
+			}]
+		},
+        "labels": {
+			"patterns": [{
+                "match": "^\\@?((\\$\\$(?!\\.))?[\\w\\.]+)[:\\s]",
+                "captures": {
+                    "1": {
+                        "name": "entity.name.function.asm"
+                    }
+                }
+			},
+            {
+                "match": "\\b([a-zA-Z][\\w\\.]+)\\b",
+                "name": "variable.parameter.label.asm"
+            }]
+		}
+	},
+	"scopeName": "source.zkasm"
+}
