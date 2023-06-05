@@ -3,6 +3,7 @@
     "displayName": "zkasm-vscode",
     "description": "zkASM Language Support",
     "version": "0.0.1",
+    "repository": "https://github.com/0xPolygonHermez/zkasmcom-vscode",
     "engines": {
         "vscode": "^1.66.0"
     },
